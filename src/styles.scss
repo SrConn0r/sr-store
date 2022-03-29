@@ -2,8 +2,12 @@
 @import url(./styles/reset.scss);
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
-*{
+* {
   font-family: 'Quicksand', sans-serif;
+
+}
+body{
+  margin: 20px;
 }
 
 .products--grid{
@@ -12,4 +16,14 @@
       border-radius: 12px;
     }
   }
+}
+
+//Tablet
+@media screen and (min-width: 40em) and (max-width: 63.9em){
+
+}
+
+//Web
+@media screen and (min-width: 64em){
+
 }
