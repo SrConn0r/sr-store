@@ -1,5 +1,8 @@
-<p>{{myShoppingCart.length}}</p>
+<p>Count: {{myShoppingCart.length}}</p>
 <p>Total: {{total}}</p>
+<p>Today: {{today | date:'short'}}</p>
+<p>Time Ago: {{date | timeAgo}}</p>
+<p>Other date: {{date | date:'yyyy-MM-dd'}}</p>
 <div class="products--grid">
   <app-product
     [product]="product"
