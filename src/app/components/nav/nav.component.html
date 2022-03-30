@@ -1,4 +1,3 @@
-<!-- Mobile -->
 <div class="show-mobile">
   <div>
     <button (click)="toggleMenu()">
@@ -7,11 +6,14 @@
     <a href="">
       <img src="./assets/svg/logo_yard_sale.svg" alt="logo">
     </a>
-    <a href="">
-      <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
-    </a>
+    <div class="cart">
+      <a href="">
+        <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
+      </a>
+      <span class="counter">{{ counter }}</span>
+    </div>
+
   </div>
-  <!-- Side menu -->
   <div class="side-menu" [class.active]="activeMenu">
     <button (click)="toggleMenu()">Close</button>
     <ul>
@@ -21,7 +23,6 @@
     </ul>
   </div>
 </div>
-<!-- Tablets & Desktop -->
 <div class="hide-mobile">
   <div>
     <nav>
@@ -36,10 +37,11 @@
     </nav>
     <div class="info">
       <div class="account">nicolas@nicolas.com</div>
-      <div>
+      <div class="cart">
         <a href="">
           <img src="./assets/svg/icon_shopping_cart.svg" alt="logo">
         </a>
+        <span class="counter">{{ counter }}</span>
       </div>
     </div>
   </div>
