@@ -21,7 +21,6 @@ export class ImgComponent implements OnInit {
   }
 
   imgLoaded(){
-    console.log('log hijo');
     this.loaded.emit(this.img);
   }
 }

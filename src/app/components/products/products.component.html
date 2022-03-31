@@ -10,8 +10,11 @@
     (addedProduct)="onAddToShoppingCart($event)"
     (showProduct)="onShowDetail($event)"
   ></app-product>
+</div>
+<div class="btn-load-more">
   <button (click)="loadMore()">Cargar más productos</button>
 </div>
+
 
 <!-- PRODUCT DETAILS -->
 <div class="product-detail" [class.active]="showProductDetail">
