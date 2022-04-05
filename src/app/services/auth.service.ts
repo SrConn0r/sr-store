@@ -11,7 +11,7 @@ import { TokenService } from './token.service';
 })
 export class AuthService {
 
-  private apiUrl: string = `${environment.API_URL}auth`;
+  private apiUrl: string = `${environment.API_URL}/api/auth`;
 
   constructor(
     private http : HttpClient,

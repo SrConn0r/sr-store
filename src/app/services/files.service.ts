@@ -15,7 +15,7 @@ interface File {
 })
 export class FilesService {
 
-  private apiUrl = `${environment.API_URL}files`;
+  private apiUrl = `${environment.API_URL}/api/files`;
 
   constructor(
     private http: HttpClient

@@ -4,6 +4,8 @@ import { StoreService } from '../../services/store.service';
 import { AuthService } from '../../services/auth.service';
 import { switchMap } from 'rxjs/operators';
 import { zip } from 'rxjs';
+import { CategoriesService } from '../../services/categories.service';
+import { Category } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-nav',
@@ -15,11 +17,20 @@ export class NavComponent implements OnInit {
   userLogin: User | null = null;
   activeMenu: boolean = false;
   counter: number = 0;
+  categories: Category[] = [];
 
   constructor(
     private storeService: StoreService,
-    private authService: AuthService
+    private authService: AuthService,
+    private categoriesService: CategoriesService
   ) { }
+
+  ngOnInit(): void {
+    this.storeService.myCart$.subscribe(products => {
+      this.counter = products.length;
+    });
+    this.getAllCategories();
+  }
 
   login(){
     /* this.authService.login('andres@prueba.com','123456').subscribe(user => {
@@ -38,14 +49,14 @@ export class NavComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-    this.storeService.myCart$.subscribe(products => {
-      this.counter = products.length;
-    });
-  }
-
   toggleMenu(){
     this.activeMenu = !this.activeMenu;
+  }
+
+  getAllCategories(){
+    this.categoriesService.getAll().subscribe(data => {
+      this.categories = data;
+    });
   }
 
 }

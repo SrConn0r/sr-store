@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.model';
 import { StoreService } from '../../services/store.service';
 import { ProductsService } from '../../services/products.service';
@@ -12,9 +12,17 @@ import { zip } from 'rxjs';
 })
 export class ProductsComponent implements OnInit {
 
+  /* @Input() productId: string | null = null; */
+  @Input() set productId(id: string | null){
+    if(id){
+      this.onShowDetail(id);
+    }
+  };
+  @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter();
+
   myShoppingCart: Product[] = [];
   total: number = 0;
-  products: Product[] = [];
   today = new Date();
   date = new Date(2021, 8, 16);
   showProductDetail: boolean = false;
@@ -41,9 +49,6 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService.gerProductsByPage(this.limit, this.offset).subscribe(data => {
-      this.products = data;
-    });
   }
 
   onAddToShoppingCart(product: Product){
@@ -78,7 +83,9 @@ export class ProductsComponent implements OnInit {
   onShowDetail(id: string){
     this.statusDetail = 'loading';
     this.productService.getProduct(id).subscribe(product => {
-      this.toggleProductDetail();
+      if(!this.showProductDetail){
+        this.showProductDetail = true;
+      }
       this.productChoosen = product;
       this.statusDetail = 'success';
     }, error =>{
@@ -122,11 +129,8 @@ export class ProductsComponent implements OnInit {
     });
   }
 
-  loadMore(){
-    this.productService.gerProductsByPage(this.limit, this.offset).subscribe(data => {
-      this.products = this.products.concat(data);
-      this.offset += this.limit;
-    });
+  onLoadMore(){
+    this.loadMore.emit();
   }
 
 }
