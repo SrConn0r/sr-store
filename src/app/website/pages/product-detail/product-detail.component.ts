@@ -3,7 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { Product } from 'src/app/models/product.model';
-import { ProductsService } from '../../services/products.service';
+import { ProductsService } from '../../../services/products.service';
 
 @Component({
   selector: 'app-product-detail',

@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user.model';
-import { StoreService } from '../../services/store.service';
-import { AuthService } from '../../services/auth.service';
+import { StoreService } from '../../../services/store.service';
+import { AuthService } from '../../../services/auth.service';
 import { switchMap } from 'rxjs/operators';
 import { zip } from 'rxjs';
-import { CategoriesService } from '../../services/categories.service';
+import { CategoriesService } from '../../../services/categories.service';
 import { Category } from 'src/app/models/product.model';
 
 @Component({
