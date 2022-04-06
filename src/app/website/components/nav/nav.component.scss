@@ -1,6 +1,7 @@
 :host {
-  margin-bottom: 3em;
+  margin-bottom: 1em;
   display: block;
+  padding: 1em;
 }
 .cart {
   position: relative;
@@ -20,7 +21,10 @@
 }
 .show-mobile {
   display: block;
-  box-shadow: 0px 2px 5px rgb(black, .2);
+  /* box-shadow: 0px 2px 5px rgb(black, .2); */
+  border-radius: 50px;
+  border: 2px solid #ACD9B2;
+  padding: 5px 15px;
   > div {
     padding: 1em;
     display: flex;
@@ -81,7 +85,10 @@
 }
 .hide-mobile {
   display: none;
-  box-shadow: 0px 2px 5px rgb(black, .2);
+  /* box-shadow: 0px 2px 5px rgb(black, .2); */
+  /* border-radius: 50px; */
+  /* border-bottom: 2px solid #ACD9B2; */
+  /* padding: 5px 15px; */
   > div {
     padding: 1em;
     display: flex;
@@ -125,6 +132,12 @@
 
 /* Tablet */
 @media screen and (min-width: 40em) and (max-width: 63.9375em) {
+  :host {
+    margin-bottom: 1em;
+    display: block;
+    padding: 0.2em 1em;
+    border-bottom: 2px solid #ACD9B2;
+  }
   .show-mobile {
     display: none;
   }
@@ -135,6 +148,12 @@
 
 /* Web */
 @media screen and (min-width: 64em) {
+  :host {
+    margin-bottom: 1em;
+    display: block;
+    padding: 0.2em 1em;
+    border-bottom: 2px solid #ACD9B2;
+  }
   .show-mobile {
     display: none;
   }
