@@ -5,6 +5,7 @@ import { Auth } from '../models/auth.model';
 import { User } from '../models/user.model';
 import { switchMap, tap } from 'rxjs/operators';
 import { TokenService } from './token.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,9 @@ import { TokenService } from './token.service';
 export class AuthService {
 
   private apiUrl: string = `${environment.API_URL}/api/auth`;
+  private user = new BehaviorSubject<User | null>(null);
+
+  user$ = this.user.asObservable();
 
   constructor(
     private http : HttpClient,
@@ -35,12 +39,20 @@ export class AuthService {
       /* headers:{
         Authorization: `Bearer ${token}`,
       } */
-    });
+    }).pipe(
+      tap(user => {
+        this.user.next(user);
+      })
+    );
   }
 
   loginAndGet(email: string, password:string){
     return this.login(email, password).pipe(
       switchMap(rta => this.profile()),
     )
+  }
+
+  logout(){
+    return this.tokenService.removeToken();
   }
 }

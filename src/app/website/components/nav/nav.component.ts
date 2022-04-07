@@ -6,6 +6,7 @@ import { switchMap } from 'rxjs/operators';
 import { zip } from 'rxjs';
 import { CategoriesService } from '../../../services/categories.service';
 import { Category } from 'src/app/models/product.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav',
@@ -22,7 +23,8 @@ export class NavComponent implements OnInit {
   constructor(
     private storeService: StoreService,
     private authService: AuthService,
-    private categoriesService: CategoriesService
+    private categoriesService: CategoriesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +32,9 @@ export class NavComponent implements OnInit {
       this.counter = products.length;
     });
     this.getAllCategories();
+    this.authService.user$.subscribe(user => {
+      this.userLogin = user;
+    });
   }
 
   login(){
@@ -37,8 +42,8 @@ export class NavComponent implements OnInit {
       this.token = user.access_token;
       this.getProfile();
     }); */
-    this.authService.loginAndGet('andres@prueba.com','123456').subscribe(user => {
-      this.userLogin = user;
+    this.authService.loginAndGet('admin@mail.com','admin123').subscribe(() => {
+      this.router.navigate(['/profile']);
     }
     );
   }
@@ -57,6 +62,12 @@ export class NavComponent implements OnInit {
     this.categoriesService.getAll().subscribe(data => {
       this.categories = data;
     });
+  }
+
+  logout(){
+    this.authService.logout();
+    this.userLogin = null;
+    this.router.navigate(['/home']);
   }
 
 }

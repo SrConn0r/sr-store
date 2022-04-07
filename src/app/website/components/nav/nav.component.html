@@ -49,7 +49,10 @@
     <div class="info">
       <div class="account">
         <button *ngIf="!userLogin; else elseBlock" (click)="login()">Login</button>
-        <ng-template #elseBlock>{{userLogin?.name}}</ng-template>
+        <ng-template #elseBlock>
+          <a routerLink="/profile">{{userLogin?.email}}</a>
+          <button (click)="logout()">Logout</button>
+        </ng-template>
       </div>
       <div class="cart">
         <a href="">
